@@ -1,0 +1,10 @@
+.course-categories a{
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+}
+.course-categories{
+    background-color: azure;
+    height: 100vh;
+    text-align: center;
+}
