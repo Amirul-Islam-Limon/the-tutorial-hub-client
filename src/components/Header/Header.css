@@ -12,3 +12,10 @@
     font-size: 40px;
     font-weight: 700;
 }
+.logOut-button:hover{
+    color: red;
+    cursor: pointer;
+}
+.logIn-button:hover{
+    color: green!important;
+}

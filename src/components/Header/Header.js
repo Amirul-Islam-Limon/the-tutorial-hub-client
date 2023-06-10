@@ -8,6 +8,8 @@ import { Link } from 'react-router-dom';
 import { FaMoon } from 'react-icons/fa';
 import { FiSun } from "react-icons/fi";
 import { AuthContext } from '../../context/AuthProvider/AuthProvider';
+import { FaUserCircle } from "react-icons/fa";
+import Image from 'react-bootstrap/Image';
 
 const Header = () => {
     const [sun, setSun] = useState(true)
@@ -32,9 +34,9 @@ const Header = () => {
             <Link to="/blog">Blog</Link>
             {
               !user?.email?
-              <Link to="/login">Login</Link>
+              <Link className='logIn-button' to="/login">Login</Link>
               :
-              <p className='mt-2 pt-1' onClick={logOut}>Log Out</p>
+              <p className=' logOut-button mt-2 pt-1' onClick={logOut}>Log Out</p>
             }
             {
                 !sun?
@@ -42,8 +44,14 @@ const Header = () => {
                 :
                 <Link><FaMoon onClick={()=>setSun(!sun)} /></Link>
             }
-            
-            
+            {
+              user?.email?
+              <>
+                {user?.photoURL? <Image title={user.displayName} style={{width:"50px"}} src={user?.photoURL} roundedCircle />:<FaUserCircle/> }
+              </>
+              :
+              ""
+            }
           </Form>
         </Navbar.Collapse>
       </Container>

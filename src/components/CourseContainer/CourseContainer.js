@@ -15,7 +15,7 @@ const CourseContainer = () => {
                 <CourseCategories></CourseCategories>
             </Col>
             <Col md={9}>
-                <h1 className='pt-3 pb-4 text-center'>Our Awesome Courses</h1>
+                <h1 className='pt-3 pb-3 text-center'>Our Awesome Courses</h1>
                 <div className='row'>
                     {
                         course?.map(course=> <Course

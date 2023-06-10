@@ -23,7 +23,7 @@ const Home = () => {
                     <CourseCategories></CourseCategories>
                 </Col>
                 <Col md={9}>
-                    <h1 className='mt-3 pb-5 text-center'>Our All Awesome Courses</h1>
+                    <h1 className='mt-2 pb-4 text-center'>Our All Awesome Courses</h1>
                     <div className='row'>
                         {
                             courses?.map(course=> <Course
