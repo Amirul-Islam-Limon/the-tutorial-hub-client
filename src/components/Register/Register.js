@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
+import './Register.css'
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { Link, Navigate } from 'react-router-dom';
@@ -6,6 +7,7 @@ import { AuthContext } from '../../context/AuthProvider/AuthProvider';
 import { onAuthStateChanged, updateProfile } from 'firebase/auth';
 
 const Register = () => {
+    const [registerError, setRegisterError] = useState(null);
     const {user,createUserWithPassword} = useContext(AuthContext);
     console.log("user from register",user)
 
@@ -25,6 +27,7 @@ const Register = () => {
             console.log(user);
         })
         .catch(error=>{
+            setRegisterError(error.message);
             console.error(error);
         })
         console.log(email, password);
@@ -39,30 +42,33 @@ const Register = () => {
             console.log("user updated")
             console.log("user from updateUserProfile", user);
         })
-        .catch((error)=>console.error(error,"User didn't updated"));
+        .catch((error)=>{
+            console.error(error,"User didn't updated");
+        });
     }
 
     return (
-        <div className='w-50 mx-auto'>
+        <div className='w-50 mx-auto' id='register'>
         <h2 className='pb-2 pt-3'>Register</h2>
         <Form onSubmit={handleRegister} >
             <Form.Group className="mb-3" controlId="formBasicName">
             <Form.Label>Full Name</Form.Label>
-            <Form.Control name="name" type="text" placeholder="Enter Your FullName" />
+            <Form.Control name="name" type="text" placeholder="Enter Your FullName" required
+            />
             </Form.Group>
             <Form.Group className="mb-3" controlId="formBasicPhoto">
             <Form.Label>Photo URL</Form.Label>
-            <Form.Control name="photoURL" type="text" placeholder="Enter Your PhotoURL" />
+            <Form.Control name="photoURL" type="text" placeholder="Enter Your PhotoURL" required />
             </Form.Group>
             <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Label>Email address</Form.Label>
-            <Form.Control name="email" type="email" placeholder="Enter email" />
+            <Form.Control name="email" type="email" placeholder="Enter email" required />
             </Form.Group>
             <Form.Group className="mb-3" controlId="formBasicPassword">
             <Form.Label>Password</Form.Label>
-            <Form.Control name="password" type="password" placeholder="Password" />
-            <Form.Text className="text-muted">
-                We'll never share your email with anyone else.
+            <Form.Control name="password" type="password" placeholder="Password" required />
+            <Form.Text className="text-danger">
+                {registerError}
             </Form.Text>
             </Form.Group>
             <Form.Group>

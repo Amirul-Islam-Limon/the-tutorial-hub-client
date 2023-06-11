@@ -10,12 +10,15 @@ import Course from './components/CourseContainer/CourseContainer';
 import CourseContainer from './components/CourseContainer/CourseContainer';
 import CourseDetails from './components/CourseDetails/CourseDetails';
 import PrivateRoute from './routes/PrivateRoute/PrivateRoute';
+import ErrorPage from './components/ErrorPage/ErrorPage';
+import Blog from './components/Blog/Blog';
 
 function App() {
   const router= createBrowserRouter([
     {
       path:"/",
       element:<Main></Main>,
+      errorElement:<ErrorPage></ErrorPage>,
       children:[
         {
           path:"/",
@@ -30,6 +33,10 @@ function App() {
           loader: ()=>{
             return fetch("http://localhost:5000/course-categories")
           }
+        },
+        {
+          path:"/blog",
+          element:<Blog></Blog>
         },
         {
           path:"/course-details/:id",

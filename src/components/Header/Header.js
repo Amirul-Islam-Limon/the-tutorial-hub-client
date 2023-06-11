@@ -4,7 +4,7 @@ import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { FaMoon } from 'react-icons/fa';
 import { FiSun } from "react-icons/fi";
 import { AuthContext } from '../../context/AuthProvider/AuthProvider';
@@ -28,13 +28,59 @@ const Header = () => {
           >
           </Nav>
           <Form className="d-flex nav-items">
-            <Link to="/">Home</Link>
-            <Link to="/courses">Courses</Link>
-            <Link to="/faq">FAQ</Link>
-            <Link to="/blog">Blog</Link>
+
+            <NavLink to="/"
+              style={({ isActive, isPending }) => {
+                return {
+                  fontWeight: isActive ? "bold" : "",
+                  borderBottom:isActive ? "2px solid #0d6efd" : "",
+                  color: isPending ? "red" : "black",
+                };
+              }}
+            >Home</NavLink> 
+
+            <NavLink to="/courses"
+              style={({ isActive, isPending }) => {
+                return {
+                  fontWeight: isActive ? "bold" : "",
+                  borderBottom:isActive ? "2px solid #0d6efd" : "",
+                  color: isPending ? "red" : "black",
+                };
+              }}
+            >Courses</NavLink>
+
+            <NavLink to="/faq"
+              style={({ isActive, isPending }) => {
+                return {
+                  fontWeight: isActive ? "bold" : "",
+                  borderBottom:isActive ? "2px solid #0d6efd" : "",
+                  color: isPending ? "red" : "black",
+                };
+              }}
+            >FAQ</NavLink>
+
+            <NavLink to="/blog"
+              style={({ isActive, isPending }) => {
+                return {
+                  fontWeight: isActive ? "bold" : "",
+                  borderBottom:isActive ? "2px solid #0d6efd" : "",
+                  color: isPending ? "red" : "black",
+                };
+              }}
+            >Blog</NavLink>
+            
             {
               !user?.email?
-              <Link className='logIn-button' to="/login">Login</Link>
+              // <Link className='logIn-button' to="/login">Login</Link>
+              <NavLink to="/login"
+              style={({ isActive, isPending }) => {
+                return {
+                  fontWeight: isActive ? "bold" : "",
+                  borderBottom:isActive ? "2px solid #0d6efd" : "",
+                  color: isPending ? "red" : "black",
+                };
+              }}
+            >Login</NavLink>
               :
               <p className=' logOut-button mt-2 pt-1' onClick={logOut}>Log Out</p>
             }

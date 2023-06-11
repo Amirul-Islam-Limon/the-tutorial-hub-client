@@ -16,6 +16,12 @@
     color: red;
     cursor: pointer;
 }
-.logIn-button:hover{
-    color: green!important;
+@media only screen and (max-width:425px) {
+    #navbar-brand-name{
+        font-size: 30px;
+    }
+    .nav-items a{
+        font-size: 16px;
+        padding: 6px;
+    }
 }

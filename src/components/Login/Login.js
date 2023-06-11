@@ -1,11 +1,12 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
+import './Login.css'
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthProvider/AuthProvider';
 
 const Login = () => {
-
+    const [logInError, setLogInError] = useState(null);
     const {logInWithEmailAndPassword} = useContext(AuthContext);
     const location = useLocation()
     const navigate = useNavigate();
@@ -26,13 +27,14 @@ const Login = () => {
             console.log(user);
         })
         .catch(error=>{
+            setLogInError(error.message);
             console.error(error);
         })
         console.log(email, password);
     }
 
     return (
-        <div className='w-50 mx-auto'>
+        <div className='w-50 mx-auto' id='log-in'>
             <h2 className='pb-2 pt-3'>LogIn</h2>
             <Form onSubmit={handleLogIn}>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -42,8 +44,8 @@ const Login = () => {
                 <Form.Group className="mb-3" controlId="formBasicPassword">
                 <Form.Label>Password</Form.Label>
                 <Form.Control name="password" type="password" placeholder="Password" />
-                <Form.Text className="text-muted">
-                    We'll never share your email with anyone else.
+                <Form.Text className="text-danger">
+                    {logInError}
                 </Form.Text>
                 </Form.Group>
                 <Form.Group>
@@ -53,6 +55,14 @@ const Login = () => {
                 Login
                 </Button>
             </Form>
+            <div>
+                <div>
+
+                </div>
+                <div>
+                    
+                </div>
+            </div>
         </div>
     );
 };
