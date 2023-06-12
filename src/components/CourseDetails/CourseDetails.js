@@ -1,4 +1,5 @@
 import React from 'react';
+import './CourseDetails.css'
 import { FaDownload } from "react-icons/fa";
 import { Link, useLoaderData } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
@@ -12,8 +13,8 @@ const CourseDetails = () => {
                 <img className='w-50' src={course.image} alt="" />
             </div>
             <div className='d-flex justify-content-between bg-dark text-white align-items-center px-3 my-2'>
-                <h2>{course.name}</h2>
-                <FaDownload />
+                <h4>{course.name}</h4>
+                <FaDownload className='download-icon' title='Click to Download' />
             </div>
             <p>{course.description}</p>
             <div className='text-center mb-4 mt-2'>

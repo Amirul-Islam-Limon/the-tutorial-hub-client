@@ -70,8 +70,9 @@ const Header = () => {
             >Blog</NavLink>
             
             {
-              !user?.email?
-              // <Link className='logIn-button' to="/login">Login</Link>
+              user?.email || user?.displayName? 
+              <p className=' logOut-button mt-2 pt-1' onClick={logOut}>Log Out</p>
+              :
               <NavLink to="/login"
               style={({ isActive, isPending }) => {
                 return {
@@ -81,19 +82,19 @@ const Header = () => {
                 };
               }}
             >Login</NavLink>
-              :
-              <p className=' logOut-button mt-2 pt-1' onClick={logOut}>Log Out</p>
+              // :
+              // <p className=' logOut-button mt-2 pt-1' onClick={logOut}>Log Out</p>
             }
             {
                 !sun?
-                <Link><FiSun onClick={()=>setSun(!sun)} /></Link>
+                <span className='text-primary p-2  fs-5'><FiSun onClick={()=>setSun(!sun)} /></span>
                 :
-                <Link><FaMoon onClick={()=>setSun(!sun)} /></Link>
+                <span className='text-primary p-2 fs-5'><FaMoon onClick={()=>setSun(!sun)} /></span>
             }
             {
-              user?.email?
+              user?.email || user?.displayName?
               <>
-                {user?.photoURL? <Image title={user.displayName} style={{width:"50px"}} src={user?.photoURL} roundedCircle />:<FaUserCircle/> }
+                {user?.photoURL? <Image title={user.displayName} style={{width:"50px"}} src={user?.photoURL} roundedCircle />:<FaUserCircle className='mt-3 fs-5'/> }
               </>
               :
               ""

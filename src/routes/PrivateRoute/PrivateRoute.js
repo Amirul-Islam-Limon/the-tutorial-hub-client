@@ -10,10 +10,10 @@ const PrivateRoute = ({children}) => {
     if(loader){
         return <div className='d-flex justify-content-center align-items-center'><h2>Loading........</h2></div>
     }
-    if(user?.email){
+    if(user?.email || user?.displayName){
             return children;
     }
-    if(!user?.email){
+    if(!user?.email && !user?.displayName){
         return <Navigate to="/login" state={{from:location}} replace></Navigate>
     }
 };

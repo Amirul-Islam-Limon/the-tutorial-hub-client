@@ -14,7 +14,9 @@ const CourseCategories = () => {
         <div>
             <h3 className='pt-3'>Course Category</h3>
                 {
-                    categories?.map(courseCategory=> <Link to={`/course/${courseCategory?.name}/${courseCategory?._id}`}>{courseCategory.name}</Link>)
+                    categories?.map(courseCategory=> <Link
+                        key={courseCategory._id}
+                        to={`/course/${courseCategory?.name}/${courseCategory?._id}`}>{courseCategory.name}</Link>)
                 }
         </div>
     );

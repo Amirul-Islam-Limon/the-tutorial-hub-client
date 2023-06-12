@@ -7,7 +7,7 @@ import { AuthContext } from '../../context/AuthProvider/AuthProvider';
 
 const Login = () => {
     const [logInError, setLogInError] = useState(null);
-    const {logInWithEmailAndPassword} = useContext(AuthContext);
+    const {logInWithEmailAndPassword, logInWithGooglePopUp,logInWithGithubPopUp} = useContext(AuthContext);
     const location = useLocation()
     const navigate = useNavigate();
 
@@ -33,6 +33,30 @@ const Login = () => {
         console.log(email, password);
     }
 
+    const handleGoogleSignIn=()=>{
+        logInWithGooglePopUp()
+        .then(result=>{
+            const user = result.user;
+            navigate(from,{replace:true})
+            console.log(user);
+        })
+        .catch(error=>{
+            console.error(error);
+        })
+    }
+
+    const handleGithubSignIn=()=>{
+        logInWithGithubPopUp()
+        .then(result=>{
+            const user = result.user;
+            navigate(from,{replace:true})
+            console.log(user);
+        })
+        .catch(error=>{
+            console.error(error);
+        })
+    }
+
     return (
         <div className='w-50 mx-auto' id='log-in'>
             <h2 className='pb-2 pt-3'>LogIn</h2>
@@ -55,12 +79,12 @@ const Login = () => {
                 Login
                 </Button>
             </Form>
-            <div>
-                <div>
-
+            <div className='d-flex pt-3 mx-auto w-100 align-items-center'>
+                <div className='m-1 w-50'>
+                    <Button onClick={handleGoogleSignIn} className='w-100' variant="success">SignIn With Google</Button>{' '}
                 </div>
-                <div>
-                    
+                <div className='m-1 w-50'>
+                    <Button onClick={handleGithubSignIn} className='w-100' variant="success">SignIn With Github</Button>{' '}
                 </div>
             </div>
         </div>

@@ -7,7 +7,7 @@ const Course = ({course}) => {
     return (
         <div className='col-md-4'>
             <img className='w-100' src={course.image} alt="" />
-            <h2>{course.name}</h2>
+            <h4>{course.name}</h4>
             <p>{course.description}</p>
             <h5>Price: {course?.price}</h5>
             <div className='text-center mb-4 mt-2'>
